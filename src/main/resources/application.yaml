@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://147.45.181.198:5432/smartbudget
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+jwt:
+  secret: 4BjKlm8pP2qN6tR7s9XyVZ3aH0FgW5yQ
+  expiration: 3600000
+
+
