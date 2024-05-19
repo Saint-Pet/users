@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/auth")
@@ -50,7 +51,7 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setEmail(registerRequest.getEmail());
         user.setActive(true);
-        user.setCreatedAt(Instant.now());
+        user.setCreatedAt(LocalDateTime.now());
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully"));
     }
@@ -68,7 +69,7 @@ public class AuthController {
         }
         String accessToken = jwtTokenProvider.generateToken(user.getUsername(), 3600); // 1 hour expiration
         String refreshToken = jwtTokenProvider.generateToken(user.getUsername(), 86400); // 1 day expiration
-        user.setLastLogin(Instant.now());
+        user.setLastLogin(LocalDateTime.now());
         userRepository.save(user);
 
         TokensResponse tokens = new TokensResponse();
