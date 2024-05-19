@@ -13,8 +13,4 @@ public class Permission {
     private Long id;
 
     private String permission;
-
-    @ManyToMany(mappedBy = "permissions")
-    private Set<Role> roles;
-
 }
